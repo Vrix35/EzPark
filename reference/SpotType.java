@@ -1,0 +1,1 @@
+public enum SpotType { FACULTY, PWD, STUDENT, VISITOR, MOTORCYCLE, TRUCK }
