@@ -32,7 +32,6 @@ public abstract class Vehicle {
                 || getFallbackSpotTypes().contains(zone.getAllowedType());
     }
 
-    @Override
     public String toString() {
         return plateNumber + " (" + vehicleType + ", " + driverRole + ")";
     }
