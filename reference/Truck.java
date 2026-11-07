@@ -3,6 +3,5 @@ public class Truck extends Vehicle {
         super(plateNumber, schoolId, role, VehicleType.TRUCK);
     }
 
-    @Override
     public SpotType getPrimarySpotType() { return SpotType.TRUCK; }
 }
