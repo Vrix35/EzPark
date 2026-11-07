@@ -3,6 +3,5 @@ public class Motorcycle extends Vehicle {
         super(plateNumber, schoolId, role, VehicleType.MOTORCYCLE);
     }
 
-    @Override
     public SpotType getPrimarySpotType() { return SpotType.MOTORCYCLE; }
 }
