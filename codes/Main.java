@@ -68,7 +68,6 @@ abstract class Vehicle {
                 || getFallbackSpotTypes().contains(zone.getAllowedType());
     }
 
-    @Override
     public String toString() {
         return plateNumber + " (" + vehicleType + ", " + driverRole + ")";
     }
@@ -79,7 +78,6 @@ class Car extends Vehicle {
         super(plateNumber, schoolId, role, VehicleType.CAR);
     }
 
-    @Override
     public SpotType getPrimarySpotType() {
         switch (getDriverRole()) {
             case FACULTY: return SpotType.FACULTY;
@@ -90,7 +88,6 @@ class Car extends Vehicle {
     }
 
     /** Smart fallback: overflow traffic is redirected, but PWD zones stay protected. */
-    @Override
     public List<SpotType> getFallbackSpotTypes() {
         List<SpotType> list = new ArrayList<>();
         switch (getDriverRole()) {
@@ -107,7 +104,6 @@ class Motorcycle extends Vehicle {
         super(plateNumber, schoolId, role, VehicleType.MOTORCYCLE);
     }
 
-    @Override
     public SpotType getPrimarySpotType() { return SpotType.MOTORCYCLE; }
 }
 
@@ -116,7 +112,6 @@ class Truck extends Vehicle {
         super(plateNumber, schoolId, role, VehicleType.TRUCK);
     }
 
-    @Override
     public SpotType getPrimarySpotType() { return SpotType.TRUCK; }
 }
 
