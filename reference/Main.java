@@ -23,6 +23,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 
 /** Desktop Swing interface for the EzPark campus parking system. */
@@ -58,6 +60,7 @@ public class Main extends JFrame {
 
     public Main() {
         super("EzPark | Campus Parking Management System");
+        setIconImage(new ImageIcon("../Logo - EzPark.jfif").getImage());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(900, 620));
         setSize(1080, 720);
@@ -81,6 +84,11 @@ public class Main extends JFrame {
         side.setLayout(new GridLayout(9, 1, 0, 8));
         side.setBorder(BorderFactory.createEmptyBorder(24, 16, 24, 16));
 
+        ImageIcon source = new ImageIcon("../Logo - EzPark.jfif");
+        Image scaled = source.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        JLabel logo = new JLabel(new ImageIcon(scaled), SwingConstants.CENTER);
+        side.add(logo);
+        
         JLabel brand = new JLabel("EZPARK", SwingConstants.CENTER);
         brand.setForeground(Color.WHITE);
         brand.setFont(new Font("SansSerif", Font.BOLD, 27));
