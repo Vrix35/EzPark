@@ -257,7 +257,7 @@ public class Main extends JFrame {
     }
 
     private void styleTable(JTable table) {
-        table.setRowHeight(30);
+        table.setRowHeight(38);
         table.setFont(new Font("SansSerif", Font.PLAIN, 12));
         table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 11));
         table.getTableHeader().setBackground(new Color(232, 238, 247));
