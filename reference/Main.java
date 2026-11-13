@@ -87,9 +87,9 @@ public class Main extends JFrame {
         subtitle.setForeground(new Color(190, 205, 225));
         subtitle.setFont(new Font("SansSerif", Font.PLAIN, 11));
         side.add(subtitle);
-        side.add(navButton("Dashboard", "dashboard"));
-        side.add(navButton("Vehicle Entry", "entry"));
-        side.add(navButton("Vehicle Exit", "exit"));
+        side.add(navButton("Dashboard", "dashboard", new Color(15, 30, 110)));
+        side.add(navButton("Vehicle Entry", "entry", new Color(15, 30, 110)));
+        side.add(navButton("Vehicle Exit", "exit", new Color(15, 30, 110)));
         //JLabel note = new JLabel("Live parking monitor", SwingConstants.CENTER);
         //note.setForeground(new Color(190, 205, 225));
         //note.setFont(new Font("SansSerif", Font.PLAIN, 11));
@@ -97,11 +97,13 @@ public class Main extends JFrame {
         return side;
     }
 
-    private JButton navButton(String label, String page) {
+    private JButton navButton(String label, String page, Color color) {
         JButton button = new JButton(label);
         button.setFocusPainted(false);
         button.setForeground(Color.WHITE);
-        button.setBackground(new Color(42, 66, 103));
+        button.setBackground(color);
+        button.setOpaque(true);
+        button.setBorderPainted(false);
         button.setFont(new Font("SansSerif", Font.BOLD, 14));
         button.setBorder(BorderFactory.createEmptyBorder(13, 12, 13, 12));
         button.addActionListener(e -> {
@@ -210,7 +212,7 @@ public class Main extends JFrame {
         JPanel panel = new JPanel(new GridLayout(2, 1, 0, 5));
         panel.setOpaque(false);
         JLabel heading = new JLabel(title);
-        heading.setFont(new Font("SansSerif", Font.BOLD, 25));
+        heading.setFont(new Font("SansSerif", Font.BOLD, 30));
         heading.setForeground(NAVY);
         JLabel sub = new JLabel(subtitle);
         sub.setFont(new Font("SansSerif", Font.PLAIN, 13));
