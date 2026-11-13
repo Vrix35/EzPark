@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -22,6 +23,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+
 
 /** Desktop Swing interface for the EzPark campus parking system. */
 public class Main extends JFrame {
@@ -100,6 +102,7 @@ public class Main extends JFrame {
     private JButton navButton(String label, String page, Color color) {
         JButton button = new JButton(label);
         button.setFocusPainted(false);
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setForeground(Color.WHITE);
         button.setBackground(color);
         button.setOpaque(true);
@@ -163,6 +166,7 @@ public class Main extends JFrame {
         submit.setForeground(Color.WHITE);
         submit.setFont(new Font("SansSerif", Font.BOLD, 14));
         submit.setFocusPainted(false);
+        submit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         submit.setMargin(new Insets(13, 18, 13, 18));
         submit.addActionListener(this::registerVehicle);
         JPanel actions = new JPanel();
@@ -191,6 +195,7 @@ public class Main extends JFrame {
         release.setForeground(Color.WHITE);
         release.setFont(new Font("SansSerif", Font.BOLD, 13));
         release.setFocusPainted(false);
+        release.setCursor(new Cursor(Cursor.HAND_CURSOR));
         release.setMargin(new Insets(12, 16, 12, 16));
         release.addActionListener(e -> releaseSelectedVehicle());
         JPanel actions = new JPanel();
