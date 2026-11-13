@@ -90,10 +90,10 @@ public class Main extends JFrame {
         side.add(navButton("Dashboard", "dashboard"));
         side.add(navButton("Vehicle Entry", "entry"));
         side.add(navButton("Vehicle Exit", "exit"));
-        JLabel note = new JLabel("Live parking monitor", SwingConstants.CENTER);
-        note.setForeground(new Color(190, 205, 225));
-        note.setFont(new Font("SansSerif", Font.PLAIN, 11));
-        side.add(note);
+        //JLabel note = new JLabel("Live parking monitor", SwingConstants.CENTER);
+        //note.setForeground(new Color(190, 205, 225));
+        //note.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        //side.add(note);
         return side;
     }
 
