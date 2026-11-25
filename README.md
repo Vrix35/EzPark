@@ -1,18 +1,56 @@
-<h1 align="center">EzPark</h1>
+(add our logo)<h1 align="center">EzPark</h1>
 
 <p align="center"><em>Add your tagline here.</em></p>
 
-## Project Overview
+## EZ Park Overview(make it bold)
 
 EzPark is a Java campus parking management system that assigns parking spots to incoming vehicles based on who is driving and what they are driving. It has a Swing desktop interface with a live occupancy dashboard, and a console version of the same logic.
 
 When a vehicle enters, EzPark:
 
-1. **Validates the permit.** Students and faculty must use a school ID in the format `25-06359`, and visitors must use a permit like `V-1234`. A plate that is already parked is rejected.
-2. **Assigns a spot.** The vehicle is routed to its own zone first. If that zone is full, it may be redirected to an overflow zone (faculty to the Student Lot, students to the Visitor Lot). PWD and visitor vehicles have no overflow, so PWD spaces stay protected.
-3. **Issues a ticket.** Each ticket has a unique ID, the plate number, the assigned spot, and the entry time.
-4. **Updates the Live Campus Occupancy Board.** The board shows open and total spots per zone and marks each zone as Available or FULL. Releasing a vehicle by plate number frees its spot.
+```
+       ______
+      /|_||_\`.__
+     (   _    _ _\
+     =`-(_)--(_)-'
+```
+1.**Validates the permit.** Students and faculty **must** use a school ID in the format `25-12345`, and visitors must use a permit like `V-1234`. A plate that is already parked is rejected.
 
+   ```
+   .------------------------.
+   | PERMIT CHECK           |
+   | ID: 25-12345    [OK]   |
+   '------------------------'
+   ```
+
+2. **Assigns a spot.** The vehicle is routed to its own zone first. If that zone is full, it may be redirected to an overflow zone (faculty to the Student Lot, students to the Visitor Lot). PWD and visitor vehicles have no overflow, so PWD spaces stay protected
+ ```
+   +--------------------+
+   |     ______         |
+   |    /|_||_\`.__     |
+   |   (   _    _ _\    |
+   |   =`-(_)--(_)-'    |
+   +--------------------+
+          SPOT A-01
+   ```
+3. **Issues a ticket.** Each ticket has a unique ID, the plate number, the assigned spot, and the entry time.
+ ```
+   .--------------------------.
+   |  EZPARK TICKET           |
+   |  ID: T1001               |
+   |  PLATE: ABC-123          |
+   |  SPOT: A-01     (  O  )  |
+   '--------------------------'
+   ```
+4. **Updates the Live Campus Occupancy Board.** The board shows open and total spots per zone and marks each zone as Available or FULL. Releasing a vehicle by plate number frees its spot.
+  ```
+   +--------------------+
+   |     OCCUPIED       |
+   |   .------------.   |
+   |   |  A-01  [X] |   |
+   |   '------------'   |
+   +--------------------+
+   ```
 ---
 
 ## Project Features
@@ -69,14 +107,77 @@ _Add your folder structure and UML diagram here._
 ---
 
 ## How to Run the Program
+## 🚀 How to Run
 
-_Add the run instructions here._
+### Prerequisites:
 
----
+* JDK 11+ (tested with JDK 17 and 21)
+* A computer with a display (the GUI version opens a Swing window)
+* No internet connection or API key needed
+
+### Step-by-step:
+
+1. Extract the project and open a terminal (Command Prompt, PowerShell, or Terminal).
+
+2. Choose a version to run.
+
+#### Option A: GUI version (Swing window)
+
+Run from **inside the `reference` folder**. Enter:
+
+```
+cd EzPark-main/reference
+
+javac *.java
+
+java Main
+```
+
+#### Option B: Console version (terminal only). Enter:
+
+```
+cd EzPark-main/codes
+
+javac Main.java
+
+java Main
+```
+
+### Using the program:
+
+1. **Dashboard** shows the live occupancy of every parking zone.
+2. **Vehicle Entry**: enter the School ID / Visitor Permit, choose the driver role and vehicle type, and enter the plate number. A ticket and a parking slot are assigned.
+3. **Vehicle Exit**: select a parked vehicle and release its slot.
+
+Accepted ID formats:
+
+| Driver | Format | Example |
+|---|---|---|
+| Faculty / Student / PWD | `00-00000` | `25-06359` |
+| Visitor | `V-` plus 3 to 5 digits | `V-1234` |
+
+### Notes(make this red or warnings):
+
+* Do not rename the `.java` files in `reference/`. Each file name must match its class name.
+* `codes/` and `reference/` are separate versions of the same program. Compile and run them separately, never together.
+* Parking data is kept in memory only and resets when the program is closed.
+* If you see `'javac' is not recognized`, install the JDK and make sure it is added to your PATH.
+
 
 ## Pictures (Screenshot Output Highlights)
 
-_Add your screenshots here._
+
+### Dashboard (Empty Lot)
+![Dashboard without vehicle](screenshots/dashboard_without_vehicle.png)
+
+### Dashboard (With Parked Vehicle)
+![Dashboard with vehicle](screenshots/dashboard_with_vehicle.png)
+
+### Vehicle Exit
+![Vehicle exit](screenshots/exit_gui.png)
+
+### Console Interface
+![Console interface](screenshots/console_interface.png)
 
 ---
 
