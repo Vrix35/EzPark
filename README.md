@@ -101,13 +101,41 @@ When a vehicle enters, EzPark:
 ---
 
 ## Project Structure (including UML)
+```
+EzPark-main/
+├── console-version/
+│   └── Main.java
+├── gui-version/
+│   ├── Main.java
+│   ├── Car.java
+│   ├── DriverRole.java
+│   ├── InvalidPermitException.java
+│   ├── Motorcycle.java
+│   ├── ParkingLotManager.java
+│   ├── ParkingSpot.java
+│   ├── ParkingZone.java
+│   ├── SpotType.java
+│   ├── Ticket.java
+│   ├── Truck.java
+│   ├── Vehicle.java
+│   ├── VehicleType.java
+│   └── ZoneFullException.java
+├── screenshots/
+│   ├── dashboard.png
+│   ├── vehicle-entry.png
+│   └── ...
+├── Logo - EzPark.jfif              (needed by the GUI)
+├── Logo(white) -EzPark.png         (for the README)
+├── README.md
+└── .gitignore
+```
 
 _Add your folder structure and UML diagram here._
 
 ---
 
-## How to Run the Program
-## 🚀 How to Run
+
+## 🚗 How to Run
 
 ### Prerequisites:
 
