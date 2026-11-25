@@ -1,3 +1,3 @@
 # EzPark
-##Batangas stategit sta
+## Batangas State University
 ###
