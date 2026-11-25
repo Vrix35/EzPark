@@ -2,22 +2,6 @@
 
 <p align="center"><em>Add your tagline here.</em></p>
 
----
-
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Project Features](#project-features)
-- [OOP Principles](#oop-principles)
-- [Project Structure (including UML)](#project-structure-including-uml)
-- [How to Run the Program](#how-to-run-the-program)
-- [Pictures (Screenshot Output Highlights)](#pictures-screenshot-output-highlights)
-- [Thank You](#thank-you)
-- [Team Members](#team-members)
-- [Acknowledgements](#acknowledgements)
-
----
-
 ## Project Overview
 
 EzPark is a Java campus parking management system that assigns parking spots to incoming vehicles based on who is driving and what they are driving. It has a Swing desktop interface with a live occupancy dashboard, and a console version of the same logic.
