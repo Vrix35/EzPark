@@ -309,20 +309,21 @@ Accepted ID formats:
 
 ---
 
-## Thank You
-
-_Add your thank-you message here._
-
----
-
 ## Team Members
 
-- Vrix
-- Shem
-- Ace
+- Vrix Denzel G. De Chavez
+- Shem Nicolai A. Perez
+- Ace F. Florante
 
 ---
+## Thank You
 
-## Acknowledgements
+Thank you po for checking out EzPark! 🚗
 
-_Add your acknowledgements here._
+**EZpecially** to our instructor, **Fatima Marie Agdon**, for the guidance, patience, and lessons that helped us build this project.
+
+<p align="center">
+  <em>Park Easy, Park Smart.</em>
+</p>
+
+
