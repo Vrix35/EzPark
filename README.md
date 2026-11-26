@@ -1,12 +1,16 @@
-(add our logo)<h1 align="center">EzPark</h1>
+<p align="center">
+  <img src="Logo%28white%29%20-EzPark.png" alt="EzPark Logo" width="320">
+</p>
+
+<h1 align="center">EzPark</h1>
 
 <p align="center"><em>Add your tagline here.</em></p>
 
-## EZ Park Overview(make it bold)
+---
+
+## **EzPark Overview**
 
 EzPark is a Java campus parking management system that assigns parking spots to incoming vehicles based on who is driving and what they are driving. It has a Swing desktop interface with a live occupancy dashboard, and a console version of the same logic.
-
-When a vehicle enters, EzPark:
 
 ```
        ______
@@ -14,7 +18,10 @@ When a vehicle enters, EzPark:
      (   _    _ _\
      =`-(_)--(_)-'
 ```
-1.**Validates the permit.** Students and faculty **must** use a school ID in the format `25-12345`, and visitors must use a permit like `V-1234`. A plate that is already parked is rejected.
+
+When a vehicle enters, EzPark:
+
+1. **Validates the permit.** Students and faculty **must** use a school ID in the format `25-12345`, and visitors must use a permit like `V-1234`. A plate that is already parked is rejected.
 
    ```
    .------------------------.
@@ -23,8 +30,9 @@ When a vehicle enters, EzPark:
    '------------------------'
    ```
 
-2. **Assigns a spot.** The vehicle is routed to its own zone first. If that zone is full, it may be redirected to an overflow zone (faculty to the Student Lot, students to the Visitor Lot). PWD and visitor vehicles have no overflow, so PWD spaces stay protected
- ```
+2. **Assigns a spot.** The vehicle is routed to its own zone first. If that zone is full, it may be redirected to an overflow zone (faculty to the Student Lot, students to the Visitor Lot). PWD and visitor vehicles have no overflow, so PWD spaces stay protected.
+
+   ```
    +--------------------+
    |     ______         |
    |    /|_||_\`.__     |
@@ -33,8 +41,10 @@ When a vehicle enters, EzPark:
    +--------------------+
           SPOT A-01
    ```
+
 3. **Issues a ticket.** Each ticket has a unique ID, the plate number, the assigned spot, and the entry time.
- ```
+
+   ```
    .--------------------------.
    |  EZPARK TICKET           |
    |  ID: T1001               |
@@ -42,8 +52,10 @@ When a vehicle enters, EzPark:
    |  SPOT: A-01     (  O  )  |
    '--------------------------'
    ```
+
 4. **Updates the Live Campus Occupancy Board.** The board shows open and total spots per zone and marks each zone as Available or FULL. Releasing a vehicle by plate number frees its spot.
-  ```
+
+   ```
    +--------------------+
    |     OCCUPIED       |
    |   .------------.   |
@@ -51,6 +63,7 @@ When a vehicle enters, EzPark:
    |   '------------'   |
    +--------------------+
    ```
+
 ---
 
 ## Project Features
@@ -70,34 +83,118 @@ When a vehicle enters, EzPark:
 ---
 
 ## OOP Principles
+## 🧠 OOP Principles
 
-### Abstraction
+EzPark is built around the four pillars of object-oriented programming, plus a few supporting design practices.
 
-- `Vehicle` is an abstract class. It declares `getPrimarySpotType()` without saying how each vehicle type decides its zone.
-- `ParkingLotManager.parkVehicle()` hides the whole entry process (validate, assign spot, create ticket) behind one method call.
+| Pillar | Where it shows up |
+|:---|:---|
+| 🎭 **Abstraction** | `Vehicle`, `ParkingLotManager.parkVehicle()` |
+| 🔒 **Encapsulation** | `Vehicle`, `ParkingSpot`, `ParkingZone`, `Ticket` |
+| 🧬 **Inheritance** | `Car`, `Motorcycle`, `Truck`, custom exceptions |
+| 🔄 **Polymorphism** | `getPrimarySpotType()`, `getFallbackSpotTypes()`, `canParkInZone()` |
 
-### Encapsulation
+---
 
-- The fields in `Vehicle`, `ParkingSpot`, `ParkingZone`, and `Ticket` are `private`, and other classes access them only through getters.
-- A spot's occupied state can only be changed through `occupySpot()` and `vacateSpot()`, so it can't be set to an invalid state from outside the class.
+### 🎭 Abstraction
 
-### Inheritance
+*Hide the complexity and show only what matters.*
 
-- `Car`, `Motorcycle`, and `Truck` all extend `Vehicle`. They reuse its plate number, school ID, driver role, and vehicle type, and add only what is specific to them.
-- `ZoneFullException` and `InvalidPermitException` extend `Exception` to give the system its own error types.
+* `Vehicle` is an **abstract class**. It declares `getPrimarySpotType()` without saying how each vehicle type decides its zone.
+* `ParkingLotManager.parkVehicle()` hides the whole entry process (**validate → assign spot → create ticket**) behind one method call.
 
-### Polymorphism
+```java
+public abstract class Vehicle {
+    public abstract SpotType getPrimarySpotType();   // no body: subclasses decide
+}
+```
 
-- Each subclass overrides `getPrimarySpotType()`: `Car` chooses a zone by driver role, `Motorcycle` always returns the motorcycle bay, and `Truck` always returns the delivery bay.
-- `Car` also overrides `getFallbackSpotTypes()` to define overflow rules, while other vehicles use the default of none.
-- `Vehicle.canParkInZone()` and `ParkingLotManager.assignSpot()` work on any `Vehicle` and call the right behavior at runtime, so a new vehicle type needs no changes to the manager.
+```java
+Ticket ticket = manager.parkVehicle(vehicle);        // one call hides three steps
+```
 
-### Additional Design Practices
+---
 
-- **Composition:** `ParkingLotManager` has `ParkingZone`s, each zone has `ParkingSpot`s, and each `Ticket` holds a `Vehicle` and a `ParkingSpot`.
-- **Enums:** `DriverRole`, `SpotType`, and `VehicleType` give fixed, type-safe values instead of loose strings.
-- **Custom exceptions:** Invalid permits and full zones are reported with clear messages instead of silent failures.
+### 🔒 Encapsulation
 
+*Keep data private and control how it changes.*
+
+* The fields in `Vehicle`, `ParkingSpot`, `ParkingZone`, and `Ticket` are `private`, and other classes access them only through **getters**.
+* A spot's occupied state can only be changed through `occupySpot()` and `vacateSpot()`, so it can't be set to an invalid state from outside the class.
+
+```java
+public class ParkingSpot {
+    private boolean isOccupied;                      // hidden from other classes
+
+    public void occupySpot(Vehicle vehicle) {        // the only way to occupy
+        this.parkedVehicle = vehicle;
+        this.isOccupied = true;
+    }
+    public void vacateSpot() {                       // the only way to free
+        this.parkedVehicle = null;
+        this.isOccupied = false;
+    }
+}
+```
+
+---
+
+### 🧬 Inheritance
+
+*Reuse existing code and extend it.*
+
+* `Car`, `Motorcycle`, and `Truck` all extend `Vehicle`. They reuse its plate number, school ID, driver role, and vehicle type, and add only what is specific to them.
+* `ZoneFullException` and `InvalidPermitException` extend `Exception` to give the system its own error types.
+
+```
+            Vehicle (abstract)
+           /       |        \
+         Car  Motorcycle   Truck
+
+            Exception
+           /         \
+InvalidPermitException  ZoneFullException
+```
+
+---
+
+### 🔄 Polymorphism
+
+*One method call, different behavior depending on the object.*
+
+* Each subclass overrides `getPrimarySpotType()`:
+
+  | Class | Returns |
+  |:---|:---|
+  | `Car` | Zone based on the driver role (Faculty, Student, PWD, or Visitor) |
+  | `Motorcycle` | Always the Motorcycle Bay |
+  | `Truck` | Always the Delivery Bay |
+
+* `Car` also overrides `getFallbackSpotTypes()` to define overflow rules, while other vehicles use the default of none.
+* `Vehicle.canParkInZone()` and `ParkingLotManager.assignSpot()` work on **any** `Vehicle` and call the right behavior at runtime, so a new vehicle type needs no changes to the manager.
+
+```java
+// The manager doesn't care whether it's a Car, Motorcycle, or Truck
+order.add(v.getPrimarySpotType());
+order.addAll(v.getFallbackSpotTypes());
+```
+
+---
+
+### 🛠️ Additional Design Practices
+
+| Practice | How it is used |
+|:---|:---|
+| 🧱 **Composition** | `ParkingLotManager` has `ParkingZone`s, each zone has `ParkingSpot`s, and each `Ticket` holds a `Vehicle` and a `ParkingSpot` |
+| 🏷️ **Enums** | `DriverRole`, `SpotType`, and `VehicleType` give fixed, type-safe values instead of loose strings |
+| ⚠️ **Custom exceptions** | Invalid permits and full zones are reported with clear messages instead of silent failures |
+
+```
+ParkingLotManager
+ └── ParkingZone (x6)
+      └── ParkingSpot (x28 total)
+Ticket ──► Vehicle + ParkingSpot
+```
 ---
 
 ## Project Structure (including UML)
@@ -180,14 +277,12 @@ Accepted ID formats:
 | Faculty / Student / PWD | `00-00000` | `25-06359` |
 | Visitor | `V-` plus 3 to 5 digits | `V-1234` |
 
-### Notes(make this red or warnings):
-
-* Do not rename the `.java` files in `reference/`. Each file name must match its class name.
-* `codes/` and `reference/` are separate versions of the same program. Compile and run them separately, never together.
-* Parking data is kept in memory only and resets when the program is closed.
-* If you see `'javac' is not recognized`, install the JDK and make sure it is added to your PATH.
-
-
+> 🚨 **Notes:**
+>
+> * Do not rename the `.java` files in `reference/`. Each file name must match its class name.
+> * `codes/` and `reference/` are separate versions of the same program. Compile and run them separately, never together.
+> * Parking data is kept in memory only and resets when the program is closed.
+> * If you see `'javac' is not recognized`, install the JDK and make sure it is added to your PATH.
 ## Pictures (Screenshot Output Highlights)
 
 
