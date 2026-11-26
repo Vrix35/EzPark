@@ -1,10 +1,9 @@
 <p align="center">
-  <img src="Logo%28white%29%20-EzPark.png" alt="EzPark Logo" width="320">
+  <img src="logo-banner-blue.gif" alt="EzPark Logo" width="100%">
 </p>
 
-<h1 align="center">EzPark</h1>
-
 <p align="center"><em>Add your tagline here.</em></p>
+
 
 ---
 
