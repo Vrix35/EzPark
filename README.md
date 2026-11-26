@@ -225,8 +225,15 @@ Ticket ──► Vehicle + ParkingSpot
         └── testing
 ```
 
-_Add your folder structure and UML diagram here._
+### UML Diagram
 
+<p align="center">
+  <a href="ezpark-uml.png?raw=true">
+    <img src="ezpark-uml.png" alt="EzPark UML Class Diagram" width="100%">
+  </a>
+</p>
+
+<p align="center"><em>Click the diagram to open it full size.</em></p>
 ---
 
 
