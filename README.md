@@ -2,14 +2,11 @@
   <img src="logo-banner-blue.gif" alt="EzPark Logo" width="100%">
 </p>
 
-<p align="center"><em>Add your tagline here.</em></p>
+<h2 align="center">EZPark – <em>Park Easy, Park Smart.</em></h2>
+
+<p align="center"><em>EzPark is a Java campus parking system that simulates how a school manages its parking lot. You register a vehicle with a school ID or visitor permit, and EzPark validates it, assigns a spot based on the driver's role and vehicle type, and issues a ticket. A live occupancy board shows which zones are available or full, and releasing a vehicle frees its spot.</em></p>
 
 
----
-
-## **EzPark Overview**
-
-EzPark is a Java campus parking management system that assigns parking spots to incoming vehicles based on who is driving and what they are driving. It has a Swing desktop interface with a live occupancy dashboard, and a console version of the same logic.
 
 ```
        ______
@@ -44,13 +41,17 @@ When a vehicle enters, EzPark:
 3. **Issues a ticket.** Each ticket has a unique ID, the plate number, the assigned spot, and the entry time.
 
    ```
-   .--------------------------.
-   |  EZPARK TICKET           |
-   |  ID: T1001               |
-   |  PLATE: ABC-123          |
-   |  SPOT: A-01     (  O  )  |
-   '--------------------------'
-   ```
+   .-----------------------------------.
+   |           EZPARK TICKET           |
+   |-----------------------------------|
+   | Ticket ID : T1001                 |
+   | Vehicle   : ABC123 (CAR, STUDENT) |
+   | Spot ID   : STU-01                |
+   | Entry Time: 08:59:43              |
+   |-----------------------------------|
+   |          [ACCESS GRANTED]         |
+   '-----------------------------------'
+    ```
 
 4. **Updates the Live Campus Occupancy Board.** The board shows open and total spots per zone and marks each zone as Available or FULL. Releasing a vehicle by plate number frees its spot.
 
@@ -201,6 +202,8 @@ Ticket ──► Vehicle + ParkingSpot
 └── vrix35-ezpark/
     ├── README.md
     ├── Logo - EzPark.jfif
+    ├── logo-banner-blue.gif        
+    ├── logo-wide-blue.png  
     ├── codes/
     │   └── Main.java
     ├── reference/
